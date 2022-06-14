@@ -9,20 +9,23 @@ const dataDirectory = path.join(process.cwd(), "data");
 export async function getSortedData(directory: string, withHTML?: boolean) {
   const dir = path.join(dataDirectory, directory);
   const fileNames = fs.readdirSync(dir);
-  const allData = fileNames.map((fileName) => {
-    const id = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(dir, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const matterResult = matter(fileContents);
-    const processedContent =
-      withHTML && remark().use(html).process(matterResult.content);
-    console.log(processedContent?.toString);
-    return {
-      id,
-      contentHtml: processedContent?.toString(),
-      ...matterResult.data,
-    };
-  });
+  const allData = await Promise.all(
+    fileNames.map(async (fileName) => {
+      const id = fileName.replace(/\.md$/, "");
+      const fullPath = path.join(dir, fileName);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const matterResult = matter(fileContents);
+      const processedContent =
+        withHTML && (await remark().use(html).process(matterResult.content));
+      console.log(processedContent?.toString);
+      return {
+        id,
+        contentHTML: processedContent?.toString(),
+        ...matterResult.data,
+      };
+    })
+  );
+
   return allData.sort((a, b) => {
     if (a.id < b.id) {
       return 1;

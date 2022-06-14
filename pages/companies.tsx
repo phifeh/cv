@@ -2,14 +2,16 @@ import Layout from "../components/layout";
 import { getSortedData } from "../lib/getData";
 
 export default function CompaniesPage({ companies }) {
+  console.log({ companies });
   return (
     <Layout>
-      <h2>
-        Companies I have worked for{" "}
-        {companies.map(({ id }) => (
-          <article dangerouslySetInnerHTML={companies.contentTML}></article>
-        ))}
-      </h2>
+      <h2>Companies that I have worked for </h2>
+      {companies.map(({ id, contentHTML }) => (
+        <article
+          dangerouslySetInnerHTML={{ __html: contentHTML }}
+          key={id}
+        ></article>
+      ))}
     </Layout>
   );
 }
