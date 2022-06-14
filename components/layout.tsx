@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "@emotion/styled"
+import Nav from "./nav";
 const name = "Philip Fehervari";
 export const siteTitle = "Philip Fehervari Resume site";
 
@@ -17,6 +18,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <Nav menu={[{title:'Skills',to: '/skills'}, {title:'about',to:'/about'}]}></Nav>
       <header >
         {home ? (
           <>
