@@ -1,1 +1,2 @@
-export const SITE_NAME = "Phiilp Fehervari resume";
+export const SITE_NAME = "Philip Fehervari resume";
+export const SITE_TITLE = "My resume site";

@@ -1,13 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/layout";
-import { getSortedPostsData } from "../../lib/skills";
+import { getSortedData } from "../../lib/getData";
 
-export default function Post({ allPostsData }) {
+export default function Post({ allSkillsData }) {
   return (
     <Layout>
       <ul>
-    {allPostsData.map(({ id, date, title }) => (
+    {allSkillsData.map(({ id, date, title }) => (
             <li  key={id}>
               <Link href={`/skills/${id}`}>
                 <a>{title}</a>
@@ -25,10 +25,10 @@ export default function Post({ allPostsData }) {
   );
 }
 export async function getStaticProps() {
-  const allPostsData = getSortedPostsData();
+  const allSkillsData = getSortedData("skills");
   return {
     props: {
-      allPostsData,
+      allSkillsData,
     },
   };
 }

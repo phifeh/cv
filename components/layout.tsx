@@ -10,9 +10,7 @@ export const siteTitle = SITE_TITLE;
 const Container = styled("div")``;
 export default function Layout({
   children,
-  home,
 }: {
-  home?: boolean;
   children?: React.ReactNode;
 }) {
   return (
@@ -23,27 +21,11 @@ export default function Layout({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Nav
-        menu={[
-          { title: "Skills", to: "/skills" },
-          { title: "about", to: "/about" },
-        ]}
-      ></Nav>
+      
       <header>
-        {home ? (
+        {(
           <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
+            {/* <Link href="/">
               <a>
                 <Image
                   priority
@@ -53,23 +35,19 @@ export default function Layout({
                   alt={name}
                 />
               </a>
-            </Link>
-            <h2>
-              <Link href="/">
-                <a>{name}</a>
-              </Link>
-            </h2>
+            </Link> */}
+            
+<Nav
+        menu={[
+          { title: "Skills", to: "/skills" },
+          { title: "about", to: "/about" },
+        ]}
+      ></Nav>
           </>
         )}
       </header>
       <main>{children}</main>
-      {!home && (
-        <div>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      
     </Container>
   );
 }

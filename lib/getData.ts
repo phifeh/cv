@@ -4,13 +4,14 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-const skillsDirectory = path.join(process.cwd(), "data", "skills");
+const dataDirectory = path.join(process.cwd(), "data");
 
-export function getSortedPostsData() {
-  const fileNames = fs.readdirSync(skillsDirectory);
+export function getSortedData(directory:string) {
+  const dir = path.join(dataDirectory,directory) 
+  const fileNames = fs.readdirSync(dir);
   const allSkillsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, "");
-    const fullPath = path.join(skillsDirectory, fileName);
+    const fullPath = path.join(dir, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
     return {
@@ -27,8 +28,9 @@ export function getSortedPostsData() {
   });
 }
 
-export function getAllPostIds() {
-  const fileNames = fs.readdirSync(skillsDirectory);
+export function getAllIds(directory: string) {
+  const dir = path.join(dataDirectory,directory)
+  const fileNames = fs.readdirSync(dir);
   return fileNames.map((fileName) => {
     return {
       params: {
@@ -38,8 +40,9 @@ export function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
-  const fullPath = path.join(skillsDirectory, `${id}.md`);
+export async function getDetailData(directory:string, id:string) {
+  const dir =path.join(dataDirectory, directory)
+  const fullPath = path.join(dir, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
   const processedContent = await remark()
