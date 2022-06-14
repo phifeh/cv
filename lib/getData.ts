@@ -16,7 +16,7 @@ export async function getSortedData(directory: string, withHTML?: boolean) {
     const matterResult = matter(fileContents);
     const processedContent =
       withHTML && remark().use(html).process(matterResult.content);
-    console.log(processedContent?.toString)
+    console.log(processedContent?.toString);
     return {
       id,
       contentHtml: processedContent?.toString(),
