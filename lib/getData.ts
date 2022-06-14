@@ -6,20 +6,24 @@ import html from "remark-html";
 
 const dataDirectory = path.join(process.cwd(), "data");
 
-export function getSortedData(directory:string) {
-  const dir = path.join(dataDirectory,directory) 
+export async function getSortedData(directory: string, withHTML?: boolean) {
+  const dir = path.join(dataDirectory, directory);
   const fileNames = fs.readdirSync(dir);
-  const allSkillsData = fileNames.map((fileName) => {
+  const allData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, "");
     const fullPath = path.join(dir, fileName);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
+    const processedContent =
+      withHTML && remark().use(html).process(matterResult.content);
+    console.log(processedContent?.toString)
     return {
       id,
+      contentHtml: processedContent?.toString(),
       ...matterResult.data,
     };
   });
-  return allSkillsData.sort((a, b) => {
+  return allData.sort((a, b) => {
     if (a.id < b.id) {
       return 1;
     } else {
@@ -29,7 +33,7 @@ export function getSortedData(directory:string) {
 }
 
 export function getAllIds(directory: string) {
-  const dir = path.join(dataDirectory,directory)
+  const dir = path.join(dataDirectory, directory);
   const fileNames = fs.readdirSync(dir);
   return fileNames.map((fileName) => {
     return {
@@ -40,8 +44,8 @@ export function getAllIds(directory: string) {
   });
 }
 
-export async function getDetailData(directory:string, id:string) {
-  const dir =path.join(dataDirectory, directory)
+export async function getDetailData(directory: string, id: string) {
+  const dir = path.join(dataDirectory, directory);
   const fullPath = path.join(dir, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);

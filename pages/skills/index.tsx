@@ -7,20 +7,17 @@ export default function Post({ allSkillsData }) {
   return (
     <Layout>
       <ul>
-    {allSkillsData.map(({ id, date, title }) => (
-            <li  key={id}>
-              <Link href={`/skills/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-            </li>
-          ))}
-          </ul>
-          <Head>
-      </Head>
-      <article>
-        
-      </article>
+        {allSkillsData.map(({ id, date, title }) => (
+          <li key={id}>
+            <Link href={`/skills/${id}`}>
+              <a>{title}</a>
+            </Link>
+            <br />
+          </li>
+        ))}
+      </ul>
+      <Head></Head>
+      <article></article>
     </Layout>
   );
 }

@@ -3,16 +3,26 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "@emotion/styled";
 import Nav from "./nav";
-import { SITE_NAME, SITE_TITLE } from "../data/skills/config";
+import { SITE_NAME, SITE_TITLE } from "../data/config";
 const name = SITE_NAME;
 export const siteTitle = SITE_TITLE;
 
-const Container = styled("div")``;
-export default function Layout({
-  children,
-}: {
-  children?: React.ReactNode;
-}) {
+const Container = styled("div")`
+  background: #efefea;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const Main = styled("main")`
+  background: white;
+  border-radius: 0.5em;
+  margin: 1em;
+  padding: 1em 0.5em;
+  max-width: var(--max-width);
+  /* border: 1px solid var(--colors-primary-text); */
+  box-shadow: 1px 2px 3px #6667;
+`;
+export default function Layout({ children }: { children?: React.ReactNode }) {
   return (
     <Container>
       <Head>
@@ -21,9 +31,9 @@ export default function Layout({
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      
+
       <header>
-        {(
+        {
           <>
             {/* <Link href="/">
               <a>
@@ -36,18 +46,18 @@ export default function Layout({
                 />
               </a>
             </Link> */}
-            
-<Nav
-        menu={[
-          { title: "Skills", to: "/skills" },
-          { title: "about", to: "/about" },
-        ]}
-      ></Nav>
+
+            <Nav
+              menu={[
+                { title: "Skills", to: "/skills" },
+                { title: "about", to: "/about" },
+                { title: "companies", to: " /companies" },
+              ]}
+            ></Nav>
           </>
-        )}
+        }
       </header>
-      <main>{children}</main>
-      
+      <Main>{children}</Main>
     </Container>
   );
 }

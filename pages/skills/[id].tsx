@@ -1,9 +1,9 @@
 import Layout from "../../components/layout";
-import { getAllPostIds, getPostData } from "../../lib/skills";
+import { getAllIds, getDetailData } from "../../lib/getData";
 import Head from "next/head";
 import utilStyles from "../../styles/utils.module.css";
 
-export default function Post({ postData }) {
+export default function Skill({ postData }) {
   return (
     <Layout>
       <Head>
@@ -11,9 +11,7 @@ export default function Post({ postData }) {
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
-        </div>
+        <div className={utilStyles.lightText}></div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
     </Layout>
@@ -21,7 +19,7 @@ export default function Post({ postData }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const paths = getAllIds("skills");
   return {
     paths,
     fallback: false,
@@ -29,7 +27,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id);
+  const postData = await getDetailData("skills", params.id);
   return {
     props: {
       postData,
