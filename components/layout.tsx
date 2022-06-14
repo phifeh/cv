@@ -1,25 +1,35 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 import Nav from "./nav";
-const name = "Philip Fehervari";
-export const siteTitle = "Philip Fehervari Resume site";
+import { SITE_NAME, SITE_TITLE } from "../data/skills/config";
+const name = SITE_NAME;
+export const siteTitle = SITE_TITLE;
 
-const Container = styled('div')`
-
-`
-export default function Layout({ children, home }) {
+const Container = styled("div")``;
+export default function Layout({
+  children,
+  home,
+}: {
+  home?: boolean;
+  children?: React.ReactNode;
+}) {
   return (
-      <Container>
+    <Container>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content={siteTitle} />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Nav menu={[{title:'Skills',to: '/skills'}, {title:'about',to:'/about'}]}></Nav>
-      <header >
+      <Nav
+        menu={[
+          { title: "Skills", to: "/skills" },
+          { title: "about", to: "/about" },
+        ]}
+      ></Nav>
+      <header>
         {home ? (
           <>
             <Image
@@ -44,9 +54,9 @@ export default function Layout({ children, home }) {
                 />
               </a>
             </Link>
-            <h2 >
+            <h2>
               <Link href="/">
-                <a >{name}</a>
+                <a>{name}</a>
               </Link>
             </h2>
           </>
@@ -54,7 +64,7 @@ export default function Layout({ children, home }) {
       </header>
       <main>{children}</main>
       {!home && (
-        <div >
+        <div>
           <Link href="/">
             <a>← Back to home</a>
           </Link>

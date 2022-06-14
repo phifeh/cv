@@ -1,1 +1,1 @@
-export const SITE_NAME = 'Phiilp Fehervari resume'
+export const SITE_NAME = "Phiilp Fehervari resume";

@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-const skillsDirectory = path.join(process.cwd(),"data", "skills");
+const skillsDirectory = path.join(process.cwd(), "data", "skills");
 
 export function getSortedPostsData() {
   const fileNames = fs.readdirSync(skillsDirectory);
