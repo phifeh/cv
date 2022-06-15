@@ -14,8 +14,8 @@ div#__next {
   box-sizing: border-box;
 }
 
-a{
-text-decoration: none;
+a {
+  text-decoration: none;
 }
 :root {
   --colors-primary-text: #254564;

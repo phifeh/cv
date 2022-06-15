@@ -17,10 +17,11 @@ export async function getSortedData(directory: string, withHTML?: boolean) {
       const matterResult = matter(fileContents);
       const processedContent =
         withHTML && (await remark().use(html).process(matterResult.content));
-      console.log(processedContent?.toString);
       return {
         id,
-        ...processedContent?{contentHTML: processedContent.toString()}:{},
+        ...(processedContent
+          ? { contentHTML: processedContent.toString() }
+          : {}),
         ...matterResult.data,
       };
     })
