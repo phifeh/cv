@@ -28,7 +28,7 @@ const Select = styled("select")`
   font-size: inherit;
   font-weight: inherit;
   border: none;
-  border-bottom: 0.1em solid var(--colors-primary-text);
+  border-bottom: 0.0125em solid var(--colors-primary-text);
   color: inherit;
   outline: none;
 `;
