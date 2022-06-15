@@ -11,7 +11,7 @@ export default function Home() {
         <title>{siteTitle}</title>
       </Head>
       <section>
-        <h1>I am a Full-stack javascript developer</h1>
+        <h1>Hi, my Name is Philip Fehervari. I am a Full-stack javascript developer with over {}</h1>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <ul className={utilStyles.list}></ul>

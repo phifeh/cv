@@ -9,7 +9,6 @@ const NavContainer = styled("nav")`
     color: white;
     transition: 2s ease opacity;
     &:hover {
-      text-decoration: none;
       opacity: 0.7;
     }
   }

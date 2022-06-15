@@ -20,7 +20,7 @@ export async function getSortedData(directory: string, withHTML?: boolean) {
       console.log(processedContent?.toString);
       return {
         id,
-        contentHTML: processedContent?.toString(),
+        ...processedContent?{contentHTML: processedContent.toString()}:{},
         ...matterResult.data,
       };
     })

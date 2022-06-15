@@ -49,8 +49,8 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
 
             <Nav
               menu={[
-                { title: "Skills", to: "/skills" },
                 { title: "about", to: "/about" },
+                { title: "skills", to: "/skills" },
                 { title: "companies", to: " /companies" },
               ]}
             ></Nav>
