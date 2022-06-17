@@ -4,6 +4,7 @@ import { SITE_NAME } from "../data/config";
 
 const NavContainer = styled("nav")`
   background: var(--colors-primary-text);
+  width: 100%;
   display: flex;
   a {
     color: white;

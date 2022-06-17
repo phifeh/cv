@@ -4,34 +4,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import Layout from "../../components/layout";
+import { Card, Select } from "../../components/ui";
 import { getSortedData } from "../../lib/getData";
 
-const SkillCard = styled("div")`
-  padding: 0.25rem;
-  padding-bottom: 0.75rem;
-  border: 0.25rem solid var(--colors-primary-text);
-  margin: 0.5rem;
-  border-radius: 0.5rem;
-  a {
-    color: var(--colors-primary-text);
-  }
-  h4 {
-    margin: 0.5rem 0;
-  }
-`;
-const Select = styled("select")`
-  option {
-    font-size: inherit;
-    font-weight: inherit;
-    color: inherit;
-  }
-  font-size: inherit;
-  font-weight: inherit;
-  border: none;
-  border-bottom: 0.0125em solid var(--colors-primary-text);
-  color: inherit;
-  outline: none;
-`;
+
+
 export default function Post({ allSkillsData }) {
   const skillsGrouped = useMemo(
     () =>
@@ -54,8 +31,8 @@ export default function Post({ allSkillsData }) {
       : skillsGrouped[selectedCategory];
   return (
     <Layout>
-      <h2>
-        Here you can find the skills I have built up for category:{" "}
+      <h3>
+        Here you can find a list of skills I have gained over the years:{" "}
         <Select
           value={selectedCategory}
           onChange={({ target: { value } }) => setSelectedCategory(value)}
@@ -64,16 +41,16 @@ export default function Post({ allSkillsData }) {
             <option key={categorie}>{categorie}</option>
           ))}{" "}
         </Select>
-      </h2>
+      </h3>
       {filteredCategories.map(({ id, description, title }) => (
-        <SkillCard key={id}>
+        <Card key={id}>
           <h4>
             <Link href={`/skills/${id}`}>
               <a>{title}</a>
             </Link>
           </h4>
           <small>{description}</small>
-        </SkillCard>
+        </Card>
       ))}
       {/* <Head></Head> */}
     </Layout>

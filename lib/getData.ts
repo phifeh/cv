@@ -6,7 +6,9 @@ import html from "remark-html";
 
 const dataDirectory = path.join(process.cwd(), "data");
 
-export async function getSortedData(directory: string, withHTML?: boolean) {
+export async function getSortedData(directory: string, withHTML?: boolean, sortingKey="id") {
+  const sortDescending = sortingKey.startsWith('-') 
+  const sortKey = sortingKey.replace(/^-/,'')
   const dir = path.join(dataDirectory, directory);
   const fileNames = fs.readdirSync(dir);
   const allData = await Promise.all(
@@ -28,7 +30,7 @@ export async function getSortedData(directory: string, withHTML?: boolean) {
   );
 
   return allData.sort((a, b) => {
-    if (a.id < b.id) {
+    if (sortDescending? a[sortKey] < b[sortKey]: a[sortKey] >b[sortKey]) {
       return 1;
     } else {
       return -1;

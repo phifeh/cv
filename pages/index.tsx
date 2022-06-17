@@ -3,6 +3,7 @@ import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedData } from "../lib/getData";
 import Link from "next/link";
+import About from "./about";
 
 export default function Home() {
   return (
@@ -10,15 +11,7 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section>
-        <h4>Hi,</h4>{" "}
-        <p>
-          my Name is Philip Fehervari. I am a Full-stack javascript developer{" "}
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <ul className={utilStyles.list}></ul>
-      </section>
+    <About></About>
     </Layout>
   );
 }
