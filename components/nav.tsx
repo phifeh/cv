@@ -9,20 +9,22 @@ const NavContainer = styled("nav")`
   a {
     color: white;
     transition: 2s ease opacity;
+    padding: 0.25rem;
     &:hover {
       opacity: 0.7;
     }
   }
   h4 {
-    padding: 0.025rem;
+    padding: 0.25rem;
     margin: 0;
   }
   ul {
     margin: 0;
     li {
       display: inline-block;
-      padding: 0.025rem;
+      padding: 0.25rem;
     margin-left: 0.75rem;
+    font-weight: 100;
     }
   }
 `;
@@ -34,11 +36,9 @@ export default function Nav({
 }) {
   return (
     <NavContainer>
-      <h4>
         <Link href="/">
-          <a>{SITE_NAME}</a>
+          <a style={{fontWeight: 100}}>{SITE_NAME}</a>
         </Link>
-      </h4>
       <nav>
         <ul>
           {menu.map(({ to, title }) => (

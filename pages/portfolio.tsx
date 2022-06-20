@@ -14,7 +14,7 @@ const Img  =styled('img')`
 export default function PortfolioPage({ portfolio }) {
   return (
     <Layout>
-      <h3>Some personal projects</h3>
+      <h2>Some personal projects</h2>
       {portfolio.map(({ id,title,url, contentHTML, image }) => (
         <Card
           key={id}

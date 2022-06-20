@@ -12,6 +12,7 @@ div#__next {
 
 * {
   box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 a {
@@ -28,4 +29,6 @@ h4,
 H5,
 h6 {
   color: var(--colors-primary-text);
+font-family: 'Fjalla One', serif;
 }
+/*  */
