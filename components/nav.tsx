@@ -14,17 +14,17 @@ const NavContainer = styled("nav")`
     }
   }
   h4 {
-    padding: 0.4em;
+    padding: 0.025rem;
     margin: 0;
   }
   ul {
     margin: 0;
     li {
       display: inline-block;
-      padding: 0.4em;
+      padding: 0.025rem;
+    margin-left: 0.75rem;
     }
   }
-  border-bottom: 2px solid white;
 `;
 
 export default function Nav({

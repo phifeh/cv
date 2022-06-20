@@ -32,7 +32,7 @@ export default function Post({ allSkillsData }) {
   return (
     <Layout>
       <h3>
-        Here you can find a list of skills I have gained over the years:{" "}
+        Here you can find a list of relevant skills I have been working on over the years:{" "}
         <Select
           value={selectedCategory}
           onChange={({ target: { value } }) => setSelectedCategory(value)}

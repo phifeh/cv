@@ -6,7 +6,7 @@ export default function CompaniesPage({ companies }) {
   console.log({ companies });
   return (
     <Layout>
-      <h3>Companies that I have worked for </h3>
+      <h2>Work experience</h2>
       {companies.map(({ id, contentHTML }) => (
         <Card
           dangerouslySetInnerHTML={{ __html: contentHTML }}

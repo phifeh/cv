@@ -13,6 +13,18 @@ const Container = styled("div")`
   display: flex;
   flex-direction: column;
   align-items:center;
+    background: radial-gradient(#efefea, #abc2da, #f9c9d7);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 50s ease infinite;
+    -moz-animation: AnimationName 50s ease infinite;
+    animation: AnimationName 50s ease infinite;
+
+@keyframes AnimationName {
+    0%{background-position:42% 0%}
+    50%{background-position:59% 100%}
+    100%{background-position:42% 0%}
+}
 `;
 const Main = styled("main")`
   background: white;
@@ -25,6 +37,7 @@ const Main = styled("main")`
   width:100%;
   height:100%;
   display:flex;flex-direction:column;
+  overflow-y:auto ;
 `;
 export default function Layout({ children }: { children?: React.ReactNode }) {
   return (
@@ -40,6 +53,7 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
                 // { title: "about", to: "/about" },
                 { title: "skills", to: "/skills" },
                 { title: "companies", to: " /companies" },
+                { title: "portfolio", to: " /portfolio" },
               ]}
             ></Nav>
       <Main>{children}</Main>
