@@ -6,9 +6,13 @@ import html from "remark-html";
 
 const dataDirectory = path.join(process.cwd(), "data");
 
-export async function getSortedData(directory: string, withHTML?: boolean, sortingKey="id") {
-  const sortDescending = sortingKey.startsWith('-') 
-  const sortKey = sortingKey.replace(/^-/,'')
+export async function getSortedData(
+  directory: string,
+  withHTML?: boolean,
+  sortingKey = "id"
+) {
+  const sortDescending = sortingKey.startsWith("-");
+  const sortKey = sortingKey.replace(/^-/, "");
   const dir = path.join(dataDirectory, directory);
   const fileNames = fs.readdirSync(dir);
   const allData = await Promise.all(
@@ -30,7 +34,7 @@ export async function getSortedData(directory: string, withHTML?: boolean, sorti
   );
 
   return allData.sort((a, b) => {
-    if (sortDescending? a[sortKey] < b[sortKey]: a[sortKey] >b[sortKey]) {
+    if (sortDescending ? a[sortKey] < b[sortKey] : a[sortKey] > b[sortKey]) {
       return 1;
     } else {
       return -1;
@@ -64,4 +68,27 @@ export async function getDetailData(directory: string, id: string) {
     contentHtml,
     ...matterResult.data,
   };
+}
+
+export async function getTechnologyInStacks(technology: string) {
+  const stacks = [];
+  for (const project of ["companies", "portfolio"]) {
+    const dir = path.join(dataDirectory, project);
+    const fileNames = fs.readdirSync(dir);
+    for (const fileName of fileNames) {
+      console.log({ fileName });
+      const fullPath = path.join(dir, fileName);
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const matterResult = matter(fileContents);
+      console.log({ matterResult });
+      const processedContent = await remark()
+        .use(html)
+        .process(matterResult.content);
+      if (matterResult?.data?.stacks?.includes(technology)) {
+        console.log(matterResult?.data?.stacks, technology);
+        stacks.push({ project, technology });
+      }
+    }
+  }
+  return stacks;
 }

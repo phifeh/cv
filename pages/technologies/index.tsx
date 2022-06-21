@@ -9,10 +9,10 @@ import { getSortedData } from "../../lib/getData";
 
 
 
-export default function Post({ allSkillsData }) {
-  const skillsGrouped = useMemo(
+export default function Post({ allTechnologiesData }) {
+  const technologiesGrouped = useMemo(
     () =>
-      allSkillsData.reduce((acc, cv) => {
+      allTechnologiesData.reduce((acc, cv) => {
         for (const skill of cv.categories) {
           acc[skill] = (acc[skill] || []).concat(cv);
         }
@@ -22,17 +22,17 @@ export default function Post({ allSkillsData }) {
   );
   const [selectedCategory, setSelectedCategory] = useState("all");
   const selectOptions = useMemo(
-    () => ["all", ...Object.keys(skillsGrouped)],
+    () => ["all", ...Object.keys(technologiesGrouped)],
     []
   );
   const filteredCategories =
     selectedCategory === "all"
-      ? allSkillsData
-      : skillsGrouped[selectedCategory];
+      ? allTechnologiesData
+      : technologiesGrouped[selectedCategory];
   return (
     <Layout>
       <h3>
-        Here you can find a list of relevant skills I have been working on over the years:{" "}
+        Here you can find a list of relevant technologies I have been using over the years:{" "}
         <Select
           value={selectedCategory}
           onChange={({ target: { value } }) => setSelectedCategory(value)}
@@ -45,7 +45,7 @@ export default function Post({ allSkillsData }) {
       {filteredCategories.map(({ id, description, title }) => (
         <Card key={id}>
           <h4>
-            <Link href={`/skills/${id}`}>
+            <Link href={`/technologies/${id}`}>
               <a>{title}</a>
             </Link>
           </h4>
@@ -57,10 +57,10 @@ export default function Post({ allSkillsData }) {
   );
 }
 export async function getStaticProps() {
-  const allSkillsData = await getSortedData("skills");
+  const allTechnologiesData = await getSortedData("technologies");
   return {
     props: {
-      allSkillsData,
+      allTechnologiesData,
     },
   };
 }

@@ -1,17 +1,34 @@
 import Layout from "../components/layout";
 import { Card } from "../components/ui";
 import { getSortedData } from "../lib/getData";
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import styled from "@emotion/styled";
+
+const A = styled('a')`
+  margin-right: 0.5rem;
+text-decoration: underline;
+`
 
 export default function CompaniesPage({ companies }) {
-  console.log({ companies });
   return (
     <Layout>
       <h2>Work experience</h2>
-      {companies.map(({ id, contentHTML }) => (
+      {companies.map(({ id, company,startDate, endDate,contentHTML, stack }) => (
         <Card
-          dangerouslySetInnerHTML={{ __html: contentHTML }}
           key={id}
-        ></Card>
+        >
+<h3>{company} ({format(new Date(startDate), 'MMMM yyyy')}{endDate && ` - ${format(new Date(endDate), 'MMMM yyyy')}`})</h3>
+<div 
+
+
+          dangerouslySetInnerHTML={{ __html: contentHTML }}
+></div>
+
+{stack && <small><strong>Stack:</strong> {stack.map((technology) =><A href={`technologies/${technology}`}>{technology}</A>)}</small>}
+
+
+
+        </Card>
       ))}
     </Layout>
   );

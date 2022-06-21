@@ -4,7 +4,7 @@ startDate: ""
 description: "A web app for practicing typing and coding"
 url: "https://codingdrills.firebaseapp.com"
 image: "/images/portfolio/codespurts/image_main.png"
-technologies:
+stack:
   - "Firebase"
   - "React"
 ---

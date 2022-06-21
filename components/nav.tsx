@@ -8,11 +8,8 @@ const NavContainer = styled("nav")`
   display: flex;
   a {
     color: white;
-    transition: 2s ease opacity;
     padding: 0.25rem;
-    &:hover {
-      opacity: 0.7;
-    }
+    
   }
   h4 {
     padding: 0.25rem;
@@ -25,6 +22,13 @@ const NavContainer = styled("nav")`
       padding: 0.25rem;
     margin-left: 0.75rem;
     font-weight: 100;
+    a{
+  opacity: 0.7;
+    transition: 0.5s ease opacity;
+    &:hover {
+    opacity:1;
+    }
+    }
     }
   }
 `;

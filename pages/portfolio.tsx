@@ -19,8 +19,8 @@ export default function PortfolioPage({ portfolio }) {
         <Card
           key={id}
         >
-<h2><a href={url}>{title}</a></h2>
-{image && <a href={url}><Img src={image}></Img></a>}
+<h2><a href={url} target="_blank">{title}</a></h2>
+{image && <a href={url} target="_blank"><Img src={image}></Img></a>}
 <div 
 
 

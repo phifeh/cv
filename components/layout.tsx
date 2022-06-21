@@ -13,7 +13,7 @@ const Container = styled("div")`
   display: flex;
   flex-direction: column;
   align-items:center;
-    background: radial-gradient(#efefea, #abc2da, #f9c9d7);
+    background: radial-gradient( #abc2da,#efefea, #abc2da, #f9c9d7, #e3f39a);
     background-size: 600% 600%;
 
     -webkit-animation: AnimationName 50s ease infinite;
@@ -51,9 +51,9 @@ export default function Layout({ children }: { children?: React.ReactNode }) {
             <Nav
               menu={[
                 // { title: "about", to: "/about" },
-                { title: "skills", to: "/skills" },
-                { title: "companies", to: " /companies" },
-                { title: "portfolio", to: " /portfolio" },
+                { title: "technologies", to: "/technologies" },
+                { title: "companies", to: "/companies" },
+                { title: "portfolio", to: "/portfolio" },
               ]}
             ></Nav>
       <Main>{children}</Main>
