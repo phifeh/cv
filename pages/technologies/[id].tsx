@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const postData = await getDetailData("technologies", params.id).catch(console.error);
-  const stacks = getTechnologyInStacks(params.id)
+  const stacks = await getTechnologyInStacks(params.id)
   return {
     props: {
       title: params.id,
